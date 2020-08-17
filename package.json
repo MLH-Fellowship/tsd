@@ -1,9 +1,9 @@
 {
-	"name": "tsd",
-	"version": "0.13.1",
+	"name": "mlh-tsd",
+	"version": "0.14.0",
 	"description": "Check TypeScript type definitions",
 	"license": "MIT",
-	"repository": "SamVerschueren/tsd",
+	"repository": "MLH-Fellowship/tsd",
 	"author": {
 		"name": "Sam Verschueren",
 		"email": "sam.verschueren@gmail.com",
