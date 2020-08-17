@@ -36,6 +36,18 @@ test('fail if typings file is not part of `files` list', async t => {
 	]);
 });
 
+test('allow specifying folders containing typings file in `files` list', async t => {
+	const diagnostics = await tsd({cwd: path.join(__dirname, 'fixtures/files-folder')});
+
+	verify(t, diagnostics, []);
+});
+
+test('allow specifying glob patterns containing typings file in `files` list', async t => {
+	const diagnostics = await tsd({cwd: path.join(__dirname, 'fixtures/files-glob')});
+
+	verify(t, diagnostics, []);
+});
+
 test('fail if `typings` property is used instead of `types`', async t => {
 	const diagnostics = await tsd({cwd: path.join(__dirname, 'fixtures/types-property/typings')});
 
@@ -163,6 +175,12 @@ test('expectError for functions', async t => {
 	]);
 });
 
+test('expectError for generics', async t => {
+	const diagnostics = await tsd({cwd: path.join(__dirname, 'fixtures/expect-error/generics')});
+
+	verify(t, diagnostics, []);
+});
+
 test('expectError should not ignore syntactical errors', async t => {
 	const diagnostics = await tsd({cwd: path.join(__dirname, 'fixtures/expect-error/syntax')});
 
@@ -190,8 +208,14 @@ test('missing import', async t => {
 	]);
 });
 
-test('tsx', async t => {
-	const diagnostics = await tsd({cwd: path.join(__dirname, 'fixtures/tsx')});
+test('tsx component', async t => {
+	const diagnostics = await tsd({cwd: path.join(__dirname, 'fixtures/tsx/component')});
+
+	verify(t, diagnostics, []);
+});
+
+test('tsx component type', async t => {
+	const diagnostics = await tsd({cwd: path.join(__dirname, 'fixtures/tsx/component-type')});
 
 	verify(t, diagnostics, []);
 });

@@ -1,6 +1,6 @@
 {
 	"name": "tsd",
-	"version": "0.11.0",
+	"version": "0.13.1",
 	"description": "Check TypeScript type definitions",
 	"license": "MIT",
 	"repository": "SamVerschueren/tsd",
@@ -13,12 +13,12 @@
 	"typings": "dist/index.d.ts",
 	"bin": "dist/cli.js",
 	"engines": {
-		"node": ">=6"
+		"node": ">=10"
 	},
 	"scripts": {
 		"prepublishOnly": "npm run build",
 		"pretest": "npm run build && cpy \"./**/**\" \"../../../dist/test/fixtures/\" --parents --cwd=source/test/fixtures",
-		"test": "npm run lint && ava dist/test/test.js",
+		"test": "npm run lint && ava",
 		"build": "npm run clean && tsc && chmod +x dist/cli.js",
 		"clean": "del-cli dist",
 		"lint": "tslint -p . --format stylish"
@@ -48,6 +48,7 @@
 		"update-notifier": "^4.1.0"
 	},
 	"devDependencies": {
+		"@ava/typescript": "^1.1.1",
 		"@types/node": "^14.0.0",
 		"@types/react": "^16.9.2",
 		"@types/update-notifier": "^4.1.0",
@@ -59,6 +60,18 @@
 		"rxjs": "^6.5.3",
 		"tslint": "^5.11.0",
 		"tslint-xo": "^0.9.0",
-		"typescript": "^3.6.3"
+		"typescript": "^3.9.6"
+	},
+	"ava": {
+		"timeout": "2m",
+		"files": [
+			"source/test/**/*",
+			"!source/test/fixtures/**/*"
+		],
+		"typescript": {
+			"rewritePaths": {
+				"source/": "dist/"
+			}
+		}
 	}
 }
