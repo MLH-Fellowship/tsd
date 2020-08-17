@@ -1,12 +1,12 @@
-# tsd [![Build Status](https://travis-ci.org/SamVerschueren/tsd.svg?branch=master)](https://travis-ci.org/SamVerschueren/tsd)
+# mlh-tsd
 
-> Check TypeScript type definitions
+> Check TypeScript type definitions. Vanilla [tsd](https://github.com/SamVerschueren/tsd) but with extra features.
 
 
 ## Install
 
 ```
-$ npm install tsd
+$ npm install mlh-tsd
 ```
 
 
@@ -44,7 +44,7 @@ Running `npx tsd` as a command will verify that the type definition works correc
 Let's add some extra [assertions](#assertions). We can assert the return type of our function call to match a certain type.
 
 ```ts
-import {expectType} from 'tsd';
+import {expectType} from 'mlh-tsd';
 import concat from '.';
 
 expectType<string>(concat('foo', 'bar'));
@@ -73,7 +73,7 @@ If we don't change the test file and we run the `tsd` command again, the test wi
 Type assertions are strict. This means that if you expect the type to be `string | number` but the argument is of type `string`, the tests will fail.
 
 ```ts
-import {expectType} from 'tsd';
+import {expectType} from 'mlh-tsd';
 import concat from '.';
 
 expectType<string>(concat('foo', 'bar'));
@@ -87,7 +87,7 @@ If we run `tsd`, we will notice that it reports an error because the `concat` me
 If you still want loose type assertion, you can use `expectAssignable` for that.
 
 ```ts
-import {expectType, expectAssignable} from 'tsd';
+import {expectType, expectAssignable} from 'mlh-tsd';
 import concat from '.';
 
 expectType<string>(concat('foo', 'bar'));
@@ -99,7 +99,7 @@ expectAssignable<string | number>(concat('foo', 'bar'));
 If your method returns a `Promise`, you can use top-level `await` to resolve the value instead of wrapping it in an `async` [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE).
 
 ```ts
-import {expectType, expectError} from 'tsd';
+import {expectType, expectError} from 'mlh-tsd';
 import concat from '.';
 
 expectType<Promise<string>>(concat('foo', 'bar'));
@@ -195,7 +195,7 @@ Check that `value` is not marked a [`@deprecated`](https://jsdoc.app/tags-deprec
 You can use the programmatic API to retrieve the diagnostics and do something with them. This can be useful to run the tests with AVA, Jest or any other testing framework.
 
 ```ts
-import tsd from 'tsd';
+import tsd from 'mlh-tsd';
 
 (async () => {
 	const diagnoser = await tsd();

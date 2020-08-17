@@ -1,6 +1,6 @@
 {
 	"name": "mlh-tsd",
-	"version": "0.14.0",
+	"version": "0.14.1",
 	"description": "Check TypeScript type definitions",
 	"license": "MIT",
 	"repository": "MLH-Fellowship/tsd",
